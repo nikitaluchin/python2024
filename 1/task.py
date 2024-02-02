@@ -23,5 +23,13 @@ def sum_prime_divs(num):
     # return divs
     return sum(divs)
 
-for n in range(1, 30):
-    print(str(n) + ": " + str(sum_prime_divs(n)))
+# 2
+def count_odd_digits(num):
+    return len([str(num)[i] for i in range(len(str(num))) if int(str(num)[i]) % 2 and int(str(num)[i]) > 3])
+
+# 1 test
+# for n in range(1, 30):
+#     print(str(n) + ": " + str(sum_prime_divs(n)))
+
+# 2 test
+print(count_odd_digits(123456789))
