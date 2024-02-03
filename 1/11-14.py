@@ -65,6 +65,33 @@ def task_8():
                 # print(sqrt((1/len(lines[i])) * sum([(ord(lines[i][k]) - get_max_avg(lines[i])) ** 2 for k in range(len(lines[i]))])))
     return lines
 
+# tested on
+# hdaa aaad dk
+# fh aa aa kaaa
+# fjk aaa kka
+def task_12():
+    n = int(input("Enter amount of lines >> "))
+    lines = [input() for i in range(n)]
+    symbols_freqs = {}
+
+    for line in lines:
+        for symb in line:
+            if symb in symbols_freqs:
+                symbols_freqs[symb] += 1
+            else:
+                symbols_freqs[symb] = 1
+    freqs = list(symbols_freqs.values())
+    symbols = list(symbols_freqs.keys())
+    mx = [max(freqs) / n, symbols[freqs.index(max(freqs))]]
+    # print(mx)
+
+    for i in range(n - 1):
+        for j in range(i + 1, n):
+            # sqrt((xi - x)^2) = abs(xi - x)
+            if abs(lines[i].count(mx[1]) - mx[0]) > abs(lines[j].count(mx[1]) - mx[0]):
+                lines[i], lines[j] = lines[j], lines[i]
+    return lines
+
 while True:
     task_num = input("Enter task num from (1, 4, 8, 12) >> ")
 
