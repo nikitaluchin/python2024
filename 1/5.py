@@ -4,15 +4,15 @@ def task_5(string):
         while string.find(" " + month + " ") != -1:
             index = string.find(" " + month + " ")
 
-            if string[index-1:index].isnumeric():
-                if string[index-2:index].isnumeric() and int(string[index-2:index]) < 32:
+            if string[index-1:index].isdecimal():
+                if string[index-2:index].isdecimal() and int(string[index-2:index]) < 32:
                     day = string[index-2:index]
                 else:
                     day = string[index-1]
             else:
                 string = string[:index] + string[index+1:]
                 continue
-            if string[index+2+len(month):index+2+len(month)+4].isnumeric() and len(string[index+2+len(month):index+2+len(month)+4]) == 4:
+            if string[index+2+len(month):index+2+len(month)+4].isdecimal() and len(string[index+2+len(month):index+2+len(month)+4]) == 4:
                 dates += [day + " " + month + " " + string[index+2+len(month):index+2+len(month)+4]]
                 string = string.replace(day + " " + month + " " + string[index+2+len(month):index+2+len(month)+4], "")
             else:
