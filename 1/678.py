@@ -74,6 +74,35 @@ def task_9(string):
         return "There're no numbers"
     return mn
 
+# tested on fjf11jjv111
+# fjf111jjv11
+# 1111
+# vjvj
+# 111fffj11
+# 11fjfjfj111
+# jfjjf111fjf11jf
+def task_18(string):
+    flag = False
+    num = ""
+
+    for symb in string:
+        if symb.isdecimal():
+            num += symb
+        elif flag and num:
+            mx = num if len(num) > len(mx) else mx
+            num = ""
+        elif num:
+            mx = num
+            flag = True
+            num = ""
+    if flag and num:
+        mx = num if len(num) > len(mx) else mx
+    elif not flag:
+        if num:
+            return num
+        return "There're no numbers"
+    return mx
+
 
 while True:
     task_num = input("Enter task num from (1, 9, 18) >> ")
