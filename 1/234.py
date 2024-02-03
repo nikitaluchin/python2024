@@ -20,12 +20,14 @@ def task_9(string):
 def task_18(string):
     dates = []
     for month in ("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"):
-        index = string.find("." + month + ".")
-        if index == -1:
-            continue
-        if string[index-2:index].isnumeric() and int(string[index-2:index]) < 32 and string[index+4:index+8].isnumeric() and len(string[index+4:index+8]) == 4:
-            dates += [string[index-2:index+8]]
-            string = string.replace(string[index-2:index+8], "")
+        while string.find("." + month + ".") != -1:
+            index = string.find("." + month + ".")
+            if string[index-2:index].isnumeric() and int(string[index-2:index]) < 32 and string[index+4:index+8].isnumeric() and len(string[index+4:index+8]) == 4:
+                dates += [string[index-2:index+8]]
+                string = string.replace(string[index-2:index+8], "")
+            else:
+                string = string[:index] + string[index+1:]
+                continue
     return dates
 
 while True:
