@@ -46,6 +46,25 @@ def task_4():
                 # print(sqrt((1/len(lines[i])) * sum([(ord(lines[i][k]) - avg) ** 2 for k in range(len(lines[i]))])))
     return lines
 
+def get_max_avg(line):
+    return max([1/3 * (ord(line[i]) + ord(line[i+1]) + ord(line[i+2])) for i in range(len(line) - 2)])
+
+# tested on
+# fjfj ld djdjls
+# abafk flff
+# gkgkg nanas
+def task_8():
+    n = int(input("Enter amount of lines >> "))
+    lines = [input() for i in range(n)]
+
+    for i in range(n - 1):
+        for j in range(i + 1, n):
+            if sqrt((1/len(lines[i])) * sum([(ord(lines[i][k]) - get_max_avg(lines[i])) ** 2 for k in range(len(lines[i]))])) \
+               > sqrt((1/len(lines[j])) * sum([(ord(lines[j][k]) - get_max_avg(lines[j])) ** 2 for k in range(len(lines[j]))])):
+                lines[i], lines[j] = lines[j], lines[i]
+                # print(sqrt((1/len(lines[i])) * sum([(ord(lines[i][k]) - get_max_avg(lines[i])) ** 2 for k in range(len(lines[i]))])))
+    return lines
+
 while True:
     task_num = input("Enter task num from (1, 4, 8, 12) >> ")
 
