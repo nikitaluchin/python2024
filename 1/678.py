@@ -35,6 +35,45 @@ def task_1(string):
         return "There're no numbers"
     return mx
 
+# tested on fhf4747ghgj833jffj7575758
+# 8448
+# jfffj
+# fhf4747ghgj833jffj
+# fffjf45.88fkk45.89
+# 45.88fjfjfk45.87jdjd
+# 45.88fjfjfk45.87
+# 45.88fjfjfk
+def task_9(string):
+    flag = False
+    num = ""
+
+    for symb in string:
+        if symb.isdecimal():
+            num += symb
+        elif symb == ".":
+            if num:
+                if num[-1] == ".":
+                    mn = min(mn, float(num[:-1]))
+                    num = "" 
+                else:
+                    num += symb
+            else:
+                continue
+        elif flag and num:
+            mn = min(mn, float(num))
+            num = ""
+        elif num:
+            mn = float(num)
+            flag = True
+            num = ""
+    if flag and num:
+        mn = min(mn, float(num))
+    elif not flag:
+        if num:
+            return float(num)
+        return "There're no numbers"
+    return mn
+
 
 while True:
     task_num = input("Enter task num from (1, 9, 18) >> ")
