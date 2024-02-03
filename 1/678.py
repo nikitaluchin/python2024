@@ -2,6 +2,8 @@
 # 8448
 # jfffj
 # fhf4747ghgj833jffj
+# fffjf45.88fkk45.89
+# 45.88fjfjfk45.87jdjd
 def task_1(string):
     flag = False
     num = ""
@@ -9,18 +11,27 @@ def task_1(string):
     for symb in string:
         if symb.isdecimal():
             num += symb
+        elif symb == ".":
+            if num:
+                if num[-1] == ".":
+                    mx = max(mx, float(num[:-1]))
+                    num = "" 
+                else:
+                    num += symb
+            else:
+                continue
         elif flag and num:
-            mx = max(mx, int(num))
+            mx = max(mx, float(num))
             num = ""
         elif num:
-            mx = int(num)
+            mx = float(num)
             flag = True
             num = ""
     if flag and num:
-        mx = max(mx, int(num))
+        mx = max(mx, float(num))
     elif not flag:
         if num:
-            return num
+            return float(num)
         return "There're no numbers"
     return mx
 
