@@ -72,6 +72,7 @@ def task_8():
 def task_12():
     n = int(input("Enter amount of lines >> "))
     lines = [input() for i in range(n)]
+    # был использован метод строк count(), прошу заметить (см. в нижний цикл)
     symbols_freqs = {}
 
     for line in lines:
