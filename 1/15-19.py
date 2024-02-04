@@ -20,8 +20,8 @@ def task_31(l):
     #         count += 1
     # return count
 
-# def task_42(l):
-    # return l.count(min(l))
+def task_43(l):
+    return l.count(min(l))
 
 while True:
     task_num = input("Enter task num from (7, 19, 31, 43, 55) >> ")
