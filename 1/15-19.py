@@ -23,6 +23,13 @@ def task_31(l):
 def task_43(l):
     return l.count(min(l))
 
+def task_55(l):
+    for i in range(len(l) - 1):
+        for j in range(i + 1, len(l)):
+            if l.count(l[i]) < l.count(l[j]):
+                l[i], l[j] = l[j], l[i]
+    return l
+
 while True:
     task_num = input("Enter task num from (7, 19, 31, 43, 55) >> ")
 
@@ -35,4 +42,4 @@ while True:
     elif task_num == "43":
         print(task_43([1,3,6,1,7,1,8,1]))
     elif task_num == "55":
-        print(task_55())
+        print(task_55([5,6,2,2,3,3,3,5,5,5]))
