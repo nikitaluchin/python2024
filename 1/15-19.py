@@ -12,7 +12,7 @@ def task_19(l):
     return l
 
 def task_31(l):
-    return len(list(filter(lambda el: True if el % 2 == 0 else False, l)))
+    return len(list(filter(lambda el: el % 2 == 0, l)))
 
     # count = 0
     # for el in l:

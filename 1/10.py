@@ -1,5 +1,5 @@
 n = int(input("Enter amount of lines >> "))
-lines = [input() for i in range(n)]
+lines = [input() for _ in range(n)]
 
 # 6
 # aa a aa aaa  
