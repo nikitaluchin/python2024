@@ -3,7 +3,6 @@ n = int(file.readline())
 line = [file.readline().split(), file.readline().rstrip("\n")]
 nums = set()
 not_nums = set()
-# print(line)
 
 
 while line[0][0] != "HELP":
