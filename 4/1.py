@@ -5,7 +5,7 @@
 # видимо ходим от M к нулю и к 2*M, но зач if a[M]?
 # сравнить с исходной прогой
 
-# f = open("ex.txt")
+# f = open("1ex.txt")
 # f = open("27-124a.txt")
 f = open("27-124b.txt")
 N, K, V, M = list(map(int, f.readline().split()))
