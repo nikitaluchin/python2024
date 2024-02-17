@@ -79,9 +79,6 @@ class Triangle:
             point.set_x(point.get_x() + v[0])
             point.set_y(point.get_y() + v[1])
 
-    def is_intersect(self, tetragon):
-        pass
-
 class Tetragon(Triangle):
     def __init__(self, p1, p2, p3, p4):
         if not all(isinstance(arg, Point) for arg in (p1, p2, p3, p4)):
@@ -114,9 +111,6 @@ class Tetragon(Triangle):
         self._p4.set_x(self._p4.get_x() + v[0])
         self._p4.set_y(self._p4.get_y() + v[1])
     
-    def is_intersect(self, triangle):
-        pass
-
 # Create Egyptian triangle and move it   
 tr = Triangle(Point(0,3),Point(0,0),Point(4,0))
 tr.move([1,2])
@@ -145,3 +139,40 @@ try:
     tetr = Tetragon(Point(0,1),Point(0,2),Point(0,3),Point(0,4))
 except (TypeError, InvalidFigureError) as e:
     print(e)
+
+tr = Triangle(Point(0,3),Point(0,0),Point(4,0))
+tetr = Tetragon(Point(0,0), Point(0,2), Point(4,0), Point(4,2))
+
+def is_intersect(tetragon, triangle):
+    if not isinstance(triangle, Triangle) or not isinstance(tetragon, Tetragon):
+        raise InvalidFigureError("Tetragon and Triangle should be passed")
+    for i in range(3):
+        for j in range(i + 1, 3):
+            tr_p1 = tr.get_points()[i]
+            tr_p2 = tr.get_points()[j]
+            # Ax + By + C = 0 - уравнение прямой через точки треугольника
+            A1 = (tr_p2.get_y() - tr_p1.get_y())
+            B1 = (tr_p1.get_x() - tr_p2.get_x())
+            C1 = tr_p1.get_y()*(tr_p2.get_x() - tr_p1.get_x()) - tr_p1.get_x()*(tr_p2.get_y() - tr_p1.get_y())
+            for m in range(4):
+                for n in range(m + 1, 4):
+                    tetr_p1 = tetr.get_points()[m]
+                    tetr_p2 = tetr.get_points()[n]
+                    A2 = (tetr_p2.get_y() - tetr_p1.get_y())
+                    B2 = (tetr_p1.get_x() - tetr_p2.get_x())
+                    C2 = tetr_p1.get_y()*(tetr_p2.get_x() - tetr_p1.get_x()) - tetr_p1.get_x()*(tetr_p2.get_y() - tetr_p1.get_y())
+                    # если прямые параллельны, пересечений нет
+                    if (A1 * B2 - A2 * B1) == 0:
+                        continue
+                    # ищем координаты точки пересечения
+                    x = -(C1 * B2 - C2 * B1) / (A1 * B2 - A2 * B1)
+                    y = -(A1 * C2 - A2 * C1) / (A1 * B2 - A2 * B1)
+                    # если координаты точки пересечения лежат на отрезках
+                    if x >= max(min(tr_p1.get_x(),tr_p2.get_x()),min(tetr_p1.get_x(),tetr_p2.get_x())) and x <= min(max(tr_p1.get_x(),tr_p2.get_x()),max(tetr_p1.get_x(),tetr_p2.get_x())):
+                        if y >= max(min(tr_p1.get_y(),tr_p2.get_y()),min(tetr_p1.get_y(),tetr_p2.get_y())) and y <= min(max(tr_p1.get_y(),tr_p2.get_y()),max(tetr_p1.get_y(),tetr_p2.get_y())):
+                            return True         
+    return False
+
+print(is_intersect(tetr, tr))
+tetr.move([9,9])
+print(is_intersect(tetr, tr))
