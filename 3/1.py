@@ -1,5 +1,3 @@
-# проверка типов объектов в is_intersect (метод один в обоих классах)
-
 from math import sqrt
 from uuid import uuid4
 
