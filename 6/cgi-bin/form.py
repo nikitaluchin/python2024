@@ -1,6 +1,5 @@
 from warnings import filterwarnings
 import cgi
-import html
 import sqlite3
 
 # ignore msg that cgi is deprecated
