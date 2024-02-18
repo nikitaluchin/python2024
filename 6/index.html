@@ -6,9 +6,24 @@
 </head>
 <body>
     <form action="/cgi-bin/form.py">
-        <input type="text" name="TEXT_1">
-        <input type="text" name="TEXT_2">
-        <input type="submit">
+        <label>
+            Адрес<br>
+            <input name="country" placeholder="Country">
+            <input name="city" placeholder="City">
+            <input name="street" placeholder="Street"> 
+            <input name="house_number" placeholder="House number">   
+        </label><br><br>
+        <label>
+            Человек<br>
+            <input name="first_name" placeholder="First name">
+            <input name="middle_name" placeholder="Middle name">
+            <input name="surname" placeholder="Surname">
+            <input name="contact_number" placeholder="Phone num">
+            <input name="date_of_birth" placeholder="Date of birth">
+            <input name="sex" placeholder="Sex">
+            <input name="address_id" placeholder="Address ID">
+        </label><br><br>
+        <input type="submit" value="Добавить">
     </form>
 </body>
 </html>

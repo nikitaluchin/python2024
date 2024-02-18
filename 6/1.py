@@ -1,5 +1,7 @@
 # https://docs.python.org/3/library/sqlite3.html
 
+# открой DB Browser for SQLite (ярлык в папке есть)
+
 import sqlite3
 import os
 from http.server import HTTPServer, CGIHTTPRequestHandler
@@ -76,8 +78,8 @@ cur.execute(query)
 for res in cur.fetchall():
     print(res)
 
+con.close()
+
 server_address = ("", 8000)
 httpd = HTTPServer(server_address, CGIHTTPRequestHandler)
 httpd.serve_forever()
-
-con.close()

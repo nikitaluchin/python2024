@@ -13,7 +13,7 @@ CREATE TABLE person (
     surname TEXT,
     contact_number INTEGER,
     date_of_birth TEXT,
-    gender TEXT,
+    sex TEXT,
     address_id INTEGER,
     FOREIGN KEY (address_id) REFERENCES address (id)
 );
@@ -55,7 +55,7 @@ VALUES
     ('Russia', 'Krasnoyarsk', 'Sovetskaya', 90),
     ('Russia', 'Samara', 'Leninskaya', 100);
 
-INSERT INTO person (first_name, middle_name, surname, contact_number, date_of_birth, gender, address_id)
+INSERT INTO person (first_name, middle_name, surname, contact_number, date_of_birth, sex, address_id)
 VALUES 
     ('John', 'Doe', 'Doe', 1234567890, '1990-01-01', 'M', 1),
     ('Jane', 'Doe', 'Doe', 9876543210, '1985-05-15', 'F', 2),
