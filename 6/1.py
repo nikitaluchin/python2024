@@ -2,6 +2,7 @@
 
 import sqlite3
 import os
+from http.server import HTTPServer, CGIHTTPRequestHandler
 
 if os.path.exists("hospital.db"):
     os.remove("hospital.db")
@@ -39,7 +40,7 @@ print()
 # каждого врача
 query = """SELECT 
     p.first_name || ' ' || p.surname AS doctor_name,
-    COUNT(pat.id)
+    COUNT(*)
 FROM 
     staff s
 JOIN 
@@ -74,5 +75,9 @@ ORDER BY
 cur.execute(query)
 for res in cur.fetchall():
     print(res)
+
+server_address = ("", 8000)
+httpd = HTTPServer(server_address, CGIHTTPRequestHandler)
+httpd.serve_forever()
 
 con.close()
