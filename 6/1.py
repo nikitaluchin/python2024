@@ -3,8 +3,13 @@
 # открой DB Browser for SQLite (ярлык в папке есть)
 
 import sqlite3
+from warnings import filterwarnings
+filterwarnings("ignore")
 import os
+import cgitb
 from http.server import HTTPServer, CGIHTTPRequestHandler
+
+cgitb.enable()
 
 if os.path.exists("hospital.db"):
     os.remove("hospital.db")

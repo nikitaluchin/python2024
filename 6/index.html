@@ -27,6 +27,20 @@
     </form><br>
     <form action="/cgi-bin/output.py">
         <input type="submit" value="Print tables">
+    </form><br>
+    <form action="/cgi-bin/export.py">
+        <input name="table" placeholder="Table">
+        <input type="submit" value="Export table to XML">
+    </form><br>
+    <form action="/cgi-bin/droptable.py">
+        <input name="table_to_drop" placeholder="Table">
+        <input type="submit" value="Drop table">
+    </form><br>
+    <form action="/cgi-bin/import.py">
+        <textarea name="xml" rows=10 cols=40>
+Write your table in XML format.
+        </textarea><br>
+        <input type="submit" value="Import table from XML">
     </form>
 </body>
 </html>

@@ -19,8 +19,14 @@ def get_rows(query):
     rows = list(map(prepare_row, rows))
     return "\n".join(rows)
 
-rows_address = get_rows("SELECT * FROM address")
-rows_person = get_rows("SELECT * FROM person")
+try:
+    rows_address = get_rows("SELECT * FROM address")
+except sqlite3.OperationalError:
+    rows_address = ""
+try:
+    rows_person = get_rows("SELECT * FROM person")
+except sqlite3.OperationalError:
+    rows_person = ""
 
 print("Content-type: text/html\n")
 
@@ -31,7 +37,10 @@ print(f"""<!DOCTYPE HTML>
             <title>Hospital tables</title>
         </head>
         <body>
-            <h3>Addresses</h3>
+        """)
+
+if rows_address:
+    print(f"""<h3>Addresses</h3>
             <table>
             <thead>
                 <tr>
@@ -45,8 +54,11 @@ print(f"""<!DOCTYPE HTML>
             <tbody>
                 {rows_address}
             </tbody>
-            </table>
-            <h3>Person</h3>
+            </table><br>
+            """)
+        
+if rows_person:
+    print(f"""<h3>Person</h3>
             <table>
             <thead>
                 <tr>
@@ -64,7 +76,7 @@ print(f"""<!DOCTYPE HTML>
                 {rows_person}
             </tbody>
             </table><br>
-        """)
+            """)
 
 print("""<form action="/redirect.html">
         <input type="submit" value="Main page">
