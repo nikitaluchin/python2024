@@ -1,5 +1,5 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView, DeleteView
 from django.shortcuts import render
 from .models import Patient, Person
 
@@ -28,3 +28,11 @@ class PatientDetailView(DetailView):
 class PatientCreate(CreateView):
     model = Patient
     fields = '__all__'
+
+class PatientUpdate(UpdateView):
+    model = Patient
+    fields = '__all__'
+
+class PatientDelete(DeleteView):
+    model = Patient
+    success_url = "/"

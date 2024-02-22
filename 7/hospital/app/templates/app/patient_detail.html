@@ -12,6 +12,12 @@
     <p><strong>Supervised by id:</strong> {{ patient.supervised_by_id }}</p>
     <p><strong>Room:</strong> {{ patient.room }}</p>
     <p><strong>Age:</strong> {{ patient.age }}</p>
-    <p><strong>Diagnosis:</strong> {{ patient.diagnosis }}</p>
+    <p><strong>Diagnosis:</strong> {{ patient.diagnosis }}</p><br>
+    <form style="display: inline" action="{% url 'patient-update' patient.patient_id %}" method="get">
+        <button>Update patient</button>
+    </form><br><br>
+    <form style="display: inline" action="{% url 'patient-delete' patient.patient_id %}" method="get">
+        <button>Delete patient</button>
+    </form>
   </body>
 </html>
