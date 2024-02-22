@@ -22,7 +22,7 @@ class Person(models.Model):
     contact_number = models.IntegerField()
     date_of_birth = models.DateField()
     sex = models.CharField(max_length=1)
-    address_id = models.ForeignKey(Address, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.first_name}, {self.middle_name}, {self.surname}"
@@ -42,25 +42,25 @@ class StaffType(models.Model):
 
 class Staff(models.Model):
     staff_id = models.AutoField(primary_key=True)
-    staff_type_id = models.ForeignKey(StaffType, on_delete=models.CASCADE)
-    person_id = models.ForeignKey(Person, on_delete=models.CASCADE)
+    staff_type = models.ForeignKey(StaffType, on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"staff id: {self.staff_id}, staff type id: {self.staff_type_id}, person id: {self.surname}"
+        return f"staff id: {self.staff_id}, staff type id: {self.staff_type_id}, person: {self.person}"
 
     def get_absolute_url(self):
         return reverse("staff_detail", kwargs={"pk": self.pk})
 
 class Patient(models.Model):
     patient_id = models.AutoField(primary_key=True)
-    person_id = models.ForeignKey(Person, on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
     supervised_by = models.ForeignKey(Staff, on_delete=models.CASCADE)
     room = models.IntegerField()
     age = models.IntegerField()
     diagnosis = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"patient id: {self.patiend_id}"
+        return f"patient id: {self.patient_id} diagnosis: {self.diagnosis}"
 
     def get_absolute_url(self):
         return reverse("patient_detail", kwargs={"pk": self.pk})
