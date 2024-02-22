@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Patient {{ patient.patient_id }} details</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>Patient id: {{ patient.patient_id }}</h1>
+
+    <p><strong>Person id:</strong> <a href="{% url 'person-detail' patient.person_id %}">{{ patient.person_id }}</a></p>
+    <p><strong>Supervised by id:</strong> {{ patient.supervised_by_id }}</p>
+    <p><strong>Room:</strong> {{ patient.room }}</p>
+    <p><strong>Age:</strong> {{ patient.age }}</p>
+    <p><strong>Diagnosis:</strong> {{ patient.diagnosis }}</p>
+  </body>
+</html>

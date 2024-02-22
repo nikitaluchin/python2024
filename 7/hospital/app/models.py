@@ -11,9 +11,6 @@ class Address(models.Model):
     def __str__(self):
         return f"{self.country}, {self.city}, {self.street}, {self.house_number}"
 
-    def get_absolute_url(self):
-        return reverse("address_detail", kwargs={"pk": self.pk})
-    
 class Person(models.Model):
     person_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20)
@@ -27,18 +24,12 @@ class Person(models.Model):
     def __str__(self):
         return f"{self.first_name}, {self.middle_name}, {self.surname}"
 
-    def get_absolute_url(self):
-        return reverse("person_detail", kwargs={"pk": self.pk})
-
 class StaffType(models.Model):
     staff_type_id = models.AutoField(primary_key=True)
     type_name = models.CharField(max_length=20)
 
     def __str__(self):
         return f"{self.type_name}"
-
-    def get_absolute_url(self):
-        return reverse("staff_type_detail", kwargs={"pk": self.pk})
 
 class Staff(models.Model):
     staff_id = models.AutoField(primary_key=True)
@@ -47,9 +38,6 @@ class Staff(models.Model):
 
     def __str__(self):
         return f"staff id: {self.staff_id}, staff type id: {self.staff_type_id}, person: {self.person}"
-
-    def get_absolute_url(self):
-        return reverse("staff_detail", kwargs={"pk": self.pk})
 
 class Patient(models.Model):
     patient_id = models.AutoField(primary_key=True)
@@ -63,4 +51,4 @@ class Patient(models.Model):
         return f"patient id: {self.patient_id} diagnosis: {self.diagnosis}"
 
     def get_absolute_url(self):
-        return reverse("patient_detail", kwargs={"pk": self.pk})
+        return reverse("patient-detail", kwargs={"pk": self.pk})

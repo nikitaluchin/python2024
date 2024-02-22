@@ -1,5 +1,8 @@
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView
 from django.shortcuts import render
-from .models import Patient
+from .models import Patient, Person
+
 
 def index(request):
     """View function for home page of site."""
@@ -12,5 +15,16 @@ def index(request):
         'patients': patients,
     }
 
-    # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+class PersonDetailView(DetailView):
+    model = Person
+    fields = '__all__'
+
+class PatientDetailView(DetailView):
+    model = Patient
+    fields = '__all__'
+
+class PatientCreate(CreateView):
+    model = Patient
+    fields = '__all__'
