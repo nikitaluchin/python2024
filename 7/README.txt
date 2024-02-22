@@ -10,6 +10,9 @@ manage.py migrate
 // сделать пустую миграцию: (затем добавил в operations hard-coded SQL scripts)
 manage.py makemigrations --empty app
 
+!!! чтобы удобно переключаться между моими коммитами, лучше использовать git checkout !!!
+(вроде указывается в качестве аргумента ID коммита, можно посмотреть через git log)
+
 2. settings.py, urls.py, models.py, migrations 0003
 3. admin.py
 Списки отображения:
